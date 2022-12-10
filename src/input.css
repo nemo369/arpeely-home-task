@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[data-mode],
+[data-mode] *{
+    transition: color 0.2s ease;
+    transition: background-color 0.2s ease;
+    transition-delay: 0.2ms color;
+}
