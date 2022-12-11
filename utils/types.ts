@@ -12,3 +12,8 @@ export interface GeneralData{
     uniqueUrls: string[];
     uniqueDomains: string[];
 }
+
+export enum SystemMode{
+    DARK = 'dark',
+    LIGHT = 'light',
+} 

@@ -1,4 +1,5 @@
 import { DomainInfo, GeneralData } from "./types";
+import {getDomainWithoutSubdomain, uniqueArray} from "./utils";
 
 const MAIN_KEY = 'domainInfos/v1'
 const GLOBAL_DATA = 'uniqUrlsAndDomains/v'
@@ -59,6 +60,17 @@ async function loadGeneralData(): Promise<GeneralData> {
   });
 }
 
+function resetGeneralData() {
+  
+  chrome.storage.sync.set(
+    {
+      [GLOBAL_DATA]: {
+        uniqueUrls: [],
+        uniqueDomains: [],
+      }
+    }
+  )
+}
 async function saveGeneralData(url: URL) {
   const data = await loadGeneralData();
   
@@ -66,8 +78,8 @@ async function saveGeneralData(url: URL) {
   chrome.storage.sync.set(
     {
       [GLOBAL_DATA]: {
-        uniqueUrls: Array.from(new Set([...uniqueUrls, url.href])),
-        uniqueDomains: Array.from(new Set([...uniqueDomains, url.hostname])),
+        uniqueUrls: uniqueArray([...uniqueUrls, url.href]),
+        uniqueDomains: uniqueArray([...uniqueDomains, getDomainWithoutSubdomain(url)]),
       }
     }
   ).then(() => {
@@ -79,4 +91,5 @@ export {
   getStorage,
   setStorage,
   loadGeneralData,
+  resetGeneralData,
 }
