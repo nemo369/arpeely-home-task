@@ -1,7 +1,4 @@
-# Arpeely Frontend Home Exercise - 🚀Naaman Frenkel 
-
--Name: 🚀[Naaman Frenkel](https://naamanfrenkel.dev/)
--Email: nafrenkel@gmail.com
+# Arpeely Frontend Home Exercise - 🚀
 
 ## Getting Started
 1. Install dependencies
